@@ -10,7 +10,6 @@ const { width } = Dimensions.get('window');
 const CustomTabBar = ({ state, descriptors, navigation }) => {
     const insets = useSafeAreaInsets();
 
-    // Filter out unwanted routes
     const filteredRoutes = state.routes.filter(route =>
         ['(home)', 'azkar', 'trace', 'share'].includes(route.name)
     );
