@@ -227,6 +227,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: '100%',
         overflow: 'visible',
+        marginLeft:15,
+        marginRight: 15,
     },
     floatingTab: {
         alignItems: 'center',
