@@ -18,20 +18,29 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
         filteredRoutes.map(() => new Animated.Value(0))
     ).current;
 
+    const tabBarAnimation = React.useRef(new Animated.Value(0)).current;
+
     React.useEffect(() => {
         animatedValues.forEach((anim, index) => {
             const routeIndex = state.routes.findIndex(r => r.name === filteredRoutes[index]?.name);
             Animated.spring(anim, {
                 toValue: state.index === routeIndex ? 1 : 0,
                 useNativeDriver: false,
-                tension: 100,
-                friction: 3,
+                tension: 120,
+                friction: 10,
             }).start();
         });
+
+        Animated.spring(tabBarAnimation, {
+            toValue: 1,
+            useNativeDriver: true,
+            tension: 80,
+            friction: 8,
+        }).start();
     }, [state.index]);
 
     const getIcon = (routeName, color, focused) => {
-        const iconProps = { size: focused ? 26 : 22, color };
+        const iconProps = { size: focused ? 28 : 24, color };
 
         switch (routeName) {
             case '(home)':
@@ -58,100 +67,121 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
     };
 
     return (
-        <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-            <View style={styles.tabBar}>
-                {filteredRoutes.map((route, index) => {
-                    const routeIndex = state.routes.findIndex(r => r.name === route.name);
-                    const isFocused = state.index === routeIndex;
+        <View style={[styles.container, { paddingBottom: insets.bottom + 10 }]}>
+            <Animated.View 
+                style={[
+                    styles.tabBarContainer,
+                    {
+                        transform: [
+                            {
+                                translateY: tabBarAnimation.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: [100, 0],
+                                })
+                            }
+                        ],
+                        opacity: tabBarAnimation
+                    }
+                ]}
+            >
+                <View style={styles.tabBar}>
+                    {filteredRoutes.map((route, index) => {
+                        const routeIndex = state.routes.findIndex(r => r.name === route.name);
+                        const isFocused = state.index === routeIndex;
 
-                    const backgroundColor = animatedValues[index].interpolate({
-                        inputRange: [0, 1],
-                        outputRange: ['rgba(1, 106, 112, 0.05)', 'rgba(1, 106, 112, 0.9)'],
-                    });
-
-                    const scale = animatedValues[index].interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0.95, 1.05],
-                    });
-
-                    const textOpacity = animatedValues[index].interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, 1],
-                    });
-
-                    const iconScale = animatedValues[index].interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [1, 1.15],
-                    });
-
-                    const shadowOpacity = animatedValues[index].interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, 0.3],
-                    });
-
-                    const onPress = () => {
-                        const event = navigation.emit({
-                            type: 'tabPress',
-                            target: route.key,
-                            canPreventDefault: true,
+                        const translateY = animatedValues[index].interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, -25],
                         });
 
-                        if (!isFocused && !event.defaultPrevented) {
-                            navigation.navigate(route.name);
-                        }
-                    };
+                        const scale = animatedValues[index].interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [1, 1.1],
+                        });
 
-                    return (
-                        <TouchableOpacity
-                            key={route.key}
-                            accessibilityRole="button"
-                            accessibilityState={isFocused ? { selected: true } : {}}
-                            onPress={onPress}
-                            style={styles.tabItem}
-                            activeOpacity={0.7}
-                        >
-                            <Animated.View
-                                style={[
-                                    styles.tabButton,
-                                    {
-                                        backgroundColor,
-                                        transform: [{ scale }],
-                                        shadowOpacity,
-                                        elevation: isFocused ? 8 : 0,
-                                    },
-                                ]}
+                        const backgroundColor = animatedValues[index].interpolate({
+                            inputRange: [0, 1],
+                            outputRange: ['transparent', '#10B981'],
+                        });
+
+                        const borderWidth = animatedValues[index].interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, 3],
+                        });
+
+                        const shadowOpacity = animatedValues[index].interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, 0.3],
+                        });
+
+                        const textOpacity = animatedValues[index].interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, 1],
+                        });
+
+                        const onPress = () => {
+                            const event = navigation.emit({
+                                type: 'tabPress',
+                                target: route.key,
+                                canPreventDefault: true,
+                            });
+
+                            if (!isFocused && !event.defaultPrevented) {
+                                navigation.navigate(route.name);
+                            }
+                        };
+
+                        return (
+                            <TouchableOpacity
+                                key={route.key}
+                                accessibilityRole="button"
+                                accessibilityState={isFocused ? { selected: true } : {}}
+                                onPress={onPress}
+                                style={styles.tabItem}
+                                activeOpacity={0.7}
                             >
                                 <Animated.View
                                     style={[
-                                        styles.iconContainer,
-                                        { transform: [{ scale: iconScale }] }
+                                        styles.floatingTab,
+                                        {
+                                            transform: [
+                                                { translateY },
+                                                { scale }
+                                            ],
+                                            backgroundColor,
+                                            borderWidth,
+                                            shadowOpacity,
+                                        },
                                     ]}
                                 >
-                                    {getIcon(
-                                        route.name,
-                                        isFocused ? '#FFFFFF' : '#016A70',
-                                        isFocused
-                                    )}
+                                    <View style={styles.iconContainer}>
+                                        {getIcon(
+                                            route.name,
+                                            isFocused ? '#FFFFFF' : '#6B7280',
+                                            isFocused
+                                        )}
+                                    </View>
                                 </Animated.View>
+                                
+                                {/* Tab title below floating icon */}
                                 {isFocused && (
                                     <Animated.Text
                                         style={[
-                                            styles.tabText,
+                                            styles.tabTitle,
                                             {
-                                                color: '#FFFFFF',
                                                 opacity: textOpacity,
-                                                transform: [{ scale: textOpacity }],
+                                                transform: [{ translateY: translateY }],
                                             },
                                         ]}
                                     >
                                         {getTitle(route.name)}
                                     </Animated.Text>
                                 )}
-                            </Animated.View>
-                        </TouchableOpacity>
-                    );
-                })}
-            </View>
+                            </TouchableOpacity>
+                        );
+                    })}
+                </View>
+            </Animated.View>
         </View>
     );
 };
@@ -164,57 +194,67 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
     },
-    tabBar: {
-        flexDirection: 'row',
-        backgroundColor: 'rgba(248, 250, 252, 0.95)',
+    tabBarContainer: {
         marginHorizontal: 20,
         marginBottom: 20,
+        alignItems: 'center',
+    },
+    tabBar: {
+        flexDirection: 'row',
+        backgroundColor: '#F8FAFC',
         borderRadius: 35,
-        paddingVertical: 12,
-        paddingHorizontal: 12,
-        shadowColor: '#016A70',
+        paddingVertical: 8,
+        paddingHorizontal: 8,
+        position: 'relative',
+        shadowColor: '#000000',
         shadowOffset: {
             width: 0,
-            height: 12,
+            height: 8,
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 20,
-        elevation: 15,
-        borderWidth: 2,
-        borderColor: 'rgba(1, 106, 112, 0.1)',
-        backdropFilter: 'blur(20px)',
+        shadowOpacity: 0.1,
+        shadowRadius: 16,
+        elevation: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.05)',
+        width: width - 40,
+        height: 60,
+        overflow: 'visible',
+        paddingBottom: 8,
     },
     tabItem: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        height: '100%',
+        overflow: 'visible',
     },
-    tabButton: {
-        paddingVertical: 14,
-        paddingHorizontal: 18,
-        borderRadius: 28,
-        minHeight: 60,
-        justifyContent: 'center',
+    floatingTab: {
         alignItems: 'center',
-        minWidth: 60,
-        shadowColor: '#016A70',
+        justifyContent: 'center',
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        borderColor: '#FFFFFF',
+        shadowColor: '#10B981',
         shadowOffset: {
             width: 0,
             height: 4,
         },
-        shadowOpacity: 0,
         shadowRadius: 8,
-        elevation: 0,
+        elevation: 15,
     },
     iconContainer: {
-        marginBottom: 3,
-        padding: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 44,
+        height: 44,
     },
-    tabText: {
-        fontSize: 11,
-        fontWeight: '800',
+    tabTitle: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: '#374151',
         textAlign: 'center',
-        marginTop: 2,
+        marginTop: 7,
         letterSpacing: 0.3,
     },
 });
