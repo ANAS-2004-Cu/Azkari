@@ -205,7 +205,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     borderColor: "#FFFFFF",
-    elevation: 15,
   },
   iconContainer: {
     alignItems: "center",
