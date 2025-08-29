@@ -19,15 +19,7 @@ const MODES = {
   MODE_33: "mode_33",
 };
 
-const STORAGE_KEYS = {
-  CURRENT_MODE: "current_mode",
-  INFINITY_COUNT: "infinity_count",
-  MODE_100_COUNT: "mode_100_count",
-  MODE_100_ROUNDS: "mode_100_rounds",
-  MODE_33_COUNT: "mode_33_count",
-  MODE_33_ROUNDS: "mode_33_rounds",
-  STATISTICS_HISTORY: "statistics_history",
-};
+const STORAGE_KEY = "counter_history";
 
 export default function Index() {
   const [currentMode, setCurrentMode] = useState(MODES.INFINITY);
@@ -41,101 +33,44 @@ export default function Index() {
 
   useEffect(() => {
     saveData();
-  }, [currentMode, count, rounds]);
-
-  useEffect(() => {
-    saveStatisticsHistory();
-  }, [statisticsHistory]);
+  }, [currentMode, count, rounds, statisticsHistory]);
 
   const loadSavedData = async () => {
-    const savedMode = await AsyncStorage.getItem(STORAGE_KEYS.CURRENT_MODE);
-    if (savedMode) {
-      setCurrentMode(savedMode);
-    }
+    try {
+      const savedData = await AsyncStorage.getItem(STORAGE_KEY);
+      if (savedData) {
+        const parsedData = JSON.parse(savedData);
 
-    const savedHistory = await AsyncStorage.getItem(
-      STORAGE_KEYS.STATISTICS_HISTORY
-    );
-    if (savedHistory) {
-      setStatisticsHistory(JSON.parse(savedHistory));
-    }
+        setStatisticsHistory(parsedData.history || []);
 
-    if (savedMode === MODES.INFINITY || !savedMode) {
-      const savedCount = await AsyncStorage.getItem(
-        STORAGE_KEYS.INFINITY_COUNT
-      );
-      if (savedCount) setCount(parseInt(savedCount, 10));
-    } else if (savedMode === MODES.MODE_100) {
-      const savedCount = await AsyncStorage.getItem(
-        STORAGE_KEYS.MODE_100_COUNT
-      );
-      const savedRounds = await AsyncStorage.getItem(
-        STORAGE_KEYS.MODE_100_ROUNDS
-      );
-      if (savedCount) setCount(parseInt(savedCount, 10));
-      if (savedRounds) setRounds(parseInt(savedRounds, 10));
-    } else if (savedMode === MODES.MODE_33) {
-      const savedCount = await AsyncStorage.getItem(STORAGE_KEYS.MODE_33_COUNT);
-      const savedRounds = await AsyncStorage.getItem(
-        STORAGE_KEYS.MODE_33_ROUNDS
-      );
-      if (savedCount) setCount(parseInt(savedCount, 10));
-      if (savedRounds) setRounds(parseInt(savedRounds, 10));
+        setCurrentMode(parsedData.currentMode || MODES.INFINITY);
+        setCount(parsedData.count || 0);
+        setRounds(parsedData.rounds || 0);
+      }
+    } catch (error) {
+      console.error("Error loading saved data:", error);
     }
   };
 
   const saveData = async () => {
-    await AsyncStorage.setItem(STORAGE_KEYS.CURRENT_MODE, currentMode);
-    if (currentMode === MODES.INFINITY) {
-      await AsyncStorage.setItem(STORAGE_KEYS.INFINITY_COUNT, count.toString());
-    } else if (currentMode === MODES.MODE_100) {
-      await AsyncStorage.setItem(STORAGE_KEYS.MODE_100_COUNT, count.toString());
-      await AsyncStorage.setItem(
-        STORAGE_KEYS.MODE_100_ROUNDS,
-        rounds.toString()
-      );
-    } else if (currentMode === MODES.MODE_33) {
-      await AsyncStorage.setItem(STORAGE_KEYS.MODE_33_COUNT, count.toString());
-      await AsyncStorage.setItem(
-        STORAGE_KEYS.MODE_33_ROUNDS,
-        rounds.toString()
-      );
+    try {
+      const dataToSave = {
+        history: statisticsHistory,
+        currentMode: currentMode,
+        count: count,
+        rounds: rounds,
+      };
+
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+    } catch (error) {
+      console.error("Error saving data:", error);
     }
   };
 
-  const saveStatisticsHistory = async () => {
-    await AsyncStorage.setItem(
-      STORAGE_KEYS.STATISTICS_HISTORY,
-      JSON.stringify(statisticsHistory)
-    );
-  };
-
-  const changeMode = async (mode) => {
+  const changeMode = (mode) => {
     setCurrentMode(mode);
-
-    if (mode === MODES.INFINITY) {
-      const savedCount = await AsyncStorage.getItem(
-        STORAGE_KEYS.INFINITY_COUNT
-      );
-      setCount(savedCount ? parseInt(savedCount, 10) : 0);
-      setRounds(0);
-    } else if (mode === MODES.MODE_100) {
-      const savedCount = await AsyncStorage.getItem(
-        STORAGE_KEYS.MODE_100_COUNT
-      );
-      const savedRounds = await AsyncStorage.getItem(
-        STORAGE_KEYS.MODE_100_ROUNDS
-      );
-      setCount(savedCount ? parseInt(savedCount, 10) : 0);
-      setRounds(savedRounds ? parseInt(savedRounds, 10) : 0);
-    } else if (mode === MODES.MODE_33) {
-      const savedCount = await AsyncStorage.getItem(STORAGE_KEYS.MODE_33_COUNT);
-      const savedRounds = await AsyncStorage.getItem(
-        STORAGE_KEYS.MODE_33_ROUNDS
-      );
-      setCount(savedCount ? parseInt(savedCount, 10) : 0);
-      setRounds(savedRounds ? parseInt(savedRounds, 10) : 0);
-    }
+    setCount(0);
+    setRounds(0);
   };
 
   const incrementCounter = () => {
@@ -159,54 +94,43 @@ export default function Index() {
   };
 
   const resetCounter = async () => {
-    if (count > 0 || rounds > 0) {
-      const newStatistic = {
-        id: Date.now(),
-        mode: currentMode,
-        count: count,
-        rounds: rounds,
-        timestamp: new Date().toLocaleString("ar-EG"),
-        totalTasbeehat:
-          currentMode === MODES.INFINITY
-            ? count
-            : rounds * (currentMode === MODES.MODE_100 ? 100 : 33) + count,
-      };
+    try {
+      if (count > 0 || rounds > 0) {
+        let statisticText = "";
+        if (currentMode === MODES.INFINITY) {
+          statisticText = `لقد قمت ب ${count} تسبيحة`;
+        } else {
+          const totalTasbeehat =
+            rounds * (currentMode === MODES.MODE_100 ? 100 : 33) + count;
+          statisticText = `لقد قمت ب ${totalTasbeehat} تسبيحة, ${rounds} مجموعة`;
+        }
 
-      setStatisticsHistory((prevHistory) => [newStatistic, ...prevHistory]);
-    }
+        const newStatistic = [
+          statisticText,
+          new Date().toLocaleString("ar-EG"),
+        ];
 
-    setCount(0);
-    setRounds(0);
+        const newHistory = [newStatistic, ...statisticsHistory];
+        setStatisticsHistory(newHistory);
+      }
 
-    if (currentMode === MODES.INFINITY) {
-      await AsyncStorage.setItem(STORAGE_KEYS.INFINITY_COUNT, "0");
-    } else if (currentMode === MODES.MODE_100) {
-      await AsyncStorage.setItem(STORAGE_KEYS.MODE_100_COUNT, "0");
-      await AsyncStorage.setItem(STORAGE_KEYS.MODE_100_ROUNDS, "0");
-    } else if (currentMode === MODES.MODE_33) {
-      await AsyncStorage.setItem(STORAGE_KEYS.MODE_33_COUNT, "0");
-      await AsyncStorage.setItem(STORAGE_KEYS.MODE_33_ROUNDS, "0");
+      setCount(0);
+      setRounds(0);
+    } catch (error) {
+      console.error("Error resetting counter:", error);
     }
   };
 
-  const clearStatisticsHistory = async () => {
-    await AsyncStorage.setItem(
-      STORAGE_KEYS.STATISTICS_HISTORY,
-      JSON.stringify([])
-    );
+  const clearStatisticsHistory = () => {
     setStatisticsHistory([]);
   };
 
-  const deleteHistoryItem = async (id) => {
-    const newHistory = statisticsHistory.filter((item) => item.id !== id);
+  const deleteHistoryItem = (index) => {
+    const newHistory = statisticsHistory.filter((_, i) => i !== index);
     setStatisticsHistory(newHistory);
-    await AsyncStorage.setItem(
-      STORAGE_KEYS.STATISTICS_HISTORY,
-      JSON.stringify(newHistory)
-    );
   };
 
-  const SwipeableHistoryItem = ({ item }) => {
+  const SwipeableHistoryItem = ({ item, index }) => {
     const pan = useRef(new Animated.ValueXY()).current;
     const opacity = useRef(new Animated.Value(1)).current;
 
@@ -222,7 +146,7 @@ export default function Index() {
             duration: 300,
             useNativeDriver: true,
           }).start(() => {
-            deleteHistoryItem(item.id);
+            deleteHistoryItem(index);
           });
         } else {
           Animated.spring(pan, {
@@ -245,11 +169,8 @@ export default function Index() {
         ]}
         {...panResponder.panHandlers}
       >
-        <Text style={styles.statisticText}>
-          لقد قمت ب {item.totalTasbeehat} تسبيحة
-          {item.mode !== MODES.INFINITY && `, ${item.rounds} مجموعة`}
-        </Text>
-        <Text style={styles.statisticTime}>{item.timestamp}</Text>
+        <Text style={styles.statisticText}>{item[0]}</Text>
+        <Text style={styles.statisticTime}>{item[1]}</Text>
       </Animated.View>
     );
   };
@@ -464,8 +385,8 @@ export default function Index() {
               style={styles.historyContainer}
               showsVerticalScrollIndicator={false}
             >
-              {statisticsHistory.map((stat) => (
-                <SwipeableHistoryItem key={stat.id} item={stat} />
+              {statisticsHistory.map((stat, index) => (
+                <SwipeableHistoryItem key={index} item={stat} index={index} />
               ))}
             </ScrollView>
           </View>
