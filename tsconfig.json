@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/(home)/index.jsx", "app/azkar/_layout.jsx"  ]
+, "app/(home)/index.jsx", "app/azkar/_layout.jsx", "app/azkar/index.tsx", "app/azkar/[type].tsx", "app/azkarData.ts"  ]
 }
