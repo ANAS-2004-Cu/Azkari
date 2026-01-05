@@ -3,31 +3,30 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useEffect, useState } from 'react';
 import {
-    Dimensions,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 
 const { width } = Dimensions.get('window');
 const STORAGE_KEY = 'tracking_data';
 
-// Days of week in Arabic
 const DAYS_AR = ['أحد', 'إثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'];
 
-// Tracking items
 const TRACKING_ITEMS = [
-  { id: 'sabah', name: 'أذكار الصباح', icon: 'sunny', color: '#FF9800' },
-  { id: 'masaa', name: 'أذكار المساء', icon: 'moon', color: '#7C4DFF' },
   { id: 'fajr', name: 'صلاة الفجر', icon: 'time-outline', color: '#00BCD4' },
+  { id: 'sabah', name: 'أذكار الصباح', icon: 'sunny', color: '#FF9800' },
   { id: 'dhuhr', name: 'صلاة الظهر', icon: 'sunny-outline', color: '#FFC107' },
   { id: 'asr', name: 'صلاة العصر', icon: 'partly-sunny', color: '#FF5722' },
+  { id: 'masaa', name: 'أذكار المساء', icon: 'moon', color: '#7C4DFF' },
   { id: 'maghrib', name: 'صلاة المغرب', icon: 'cloudy-night', color: '#9C27B0' },
   { id: 'isha', name: 'صلاة العشاء', icon: 'moon-outline', color: '#3F51B5' },
   { id: 'quran', name: 'قراءة القرآن', icon: 'book', color: '#4CAF50' },
+  { id: 'azkar', name: ' اذكار النوم', icon: 'book', color: '#4CAF50' },
 ];
 
 export default function TraceScreen() {
@@ -47,7 +46,6 @@ export default function TraceScreen() {
     const today = new Date();
     const week = [];
     
-    // Get the start of the week (Sunday)
     const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - today.getDay());
     
@@ -144,7 +142,6 @@ export default function TraceScreen() {
   const weekProgress = getWeekProgress();
   const streak = getStreak();
 
-  // Circular Progress Component
   const CircularProgress = ({ percentage, size, strokeWidth, color }) => {
     const radius = (size - strokeWidth) / 2;
     const circumference = radius * 2 * Math.PI;

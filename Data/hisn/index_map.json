@@ -1,0 +1,794 @@
+[
+  {
+    "id": "hisn_2",
+    "title": "أذكار الاستيقاظ من النوم",
+    "filename": "hisn_2.json",
+    "count": 4
+  },
+  {
+    "id": "hisn_3",
+    "title": "دعاء لبس الثوب",
+    "filename": "hisn_3.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_4",
+    "title": "دعاء لبس الثوب الجديد",
+    "filename": "hisn_4.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_5",
+    "title": "الدعاء لمن لبس ثوباً جديداً",
+    "filename": "hisn_5.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_6",
+    "title": "ما يقول إذا وضع الثوب",
+    "filename": "hisn_6.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_7",
+    "title": "دعاء دخول الخلاء",
+    "filename": "hisn_7.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_8",
+    "title": "دعاء الخروج من الخلاء",
+    "filename": "hisn_8.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_9",
+    "title": "الذكر قبل الوضوء",
+    "filename": "hisn_9.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_10",
+    "title": "الذكر بعد الفراغ من الوضوء",
+    "filename": "hisn_10.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_11",
+    "title": "الذكر عند الخروج من المنزل",
+    "filename": "hisn_11.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_12",
+    "title": "الذكر عند الدخول المنزل",
+    "filename": "hisn_12.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_13",
+    "title": "دعاء الذهاب إلى المسجد",
+    "filename": "hisn_13.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_14",
+    "title": "دعاء دخول المسجد",
+    "filename": "hisn_14.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_15",
+    "title": "دعاء الخروج من المسجد",
+    "filename": "hisn_15.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_16",
+    "title": "أذكار الأذان",
+    "filename": "hisn_16.json",
+    "count": 5
+  },
+  {
+    "id": "hisn_17",
+    "title": "دعاء الاستفتاح",
+    "filename": "hisn_17.json",
+    "count": 6
+  },
+  {
+    "id": "hisn_18",
+    "title": "دعاء الركوع",
+    "filename": "hisn_18.json",
+    "count": 5
+  },
+  {
+    "id": "hisn_19",
+    "title": "دعاء الرفع من الركوع",
+    "filename": "hisn_19.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_20",
+    "title": "دعاء السجود",
+    "filename": "hisn_20.json",
+    "count": 7
+  },
+  {
+    "id": "hisn_21",
+    "title": "دعاء الجلسة بين السجدتين",
+    "filename": "hisn_21.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_22",
+    "title": "دعاء سجود التلاوة",
+    "filename": "hisn_22.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_23",
+    "title": "التشهد",
+    "filename": "hisn_23.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_24",
+    "title": "الصلاة على النبي صلى الله عليه وسلم بعد التشهد",
+    "filename": "hisn_24.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_25",
+    "title": "الدعاء بعد التشهد الأخير وقبل السلام",
+    "filename": "hisn_25.json",
+    "count": 11
+  },
+  {
+    "id": "hisn_26",
+    "title": "الأذكار بعد السلام من الصلاة",
+    "filename": "hisn_26.json",
+    "count": 12
+  },
+  {
+    "id": "hisn_27",
+    "title": "دعاء صلاة الاستخارة",
+    "filename": "hisn_27.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_28",
+    "title": "أذكار الصباح والمساء",
+    "filename": "hisn_28.json",
+    "count": 25
+  },
+  {
+    "id": "hisn_29",
+    "title": "أذكار النوم",
+    "filename": "hisn_29.json",
+    "count": 13
+  },
+  {
+    "id": "hisn_30",
+    "title": "الدعاء إذا تقلب ليلاً",
+    "filename": "hisn_30.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_31",
+    "title": "دعاء القلق والفزع في النوم ومن بلي بالوحشة",
+    "filename": "hisn_31.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_32",
+    "title": "ما يفعل من رأى الرؤيا أو الحلم",
+    "filename": "hisn_32.json",
+    "count": 5
+  },
+  {
+    "id": "hisn_33",
+    "title": "دعاء قنوت الوتر",
+    "filename": "hisn_33.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_34",
+    "title": "الذكر عقب السلام من الوتر",
+    "filename": "hisn_34.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_35",
+    "title": "دعاء الهم والحزن",
+    "filename": "hisn_35.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_36",
+    "title": "دعاء الكرب",
+    "filename": "hisn_36.json",
+    "count": 4
+  },
+  {
+    "id": "hisn_37",
+    "title": "دعاء لقاء العدو وذي السلطان",
+    "filename": "hisn_37.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_38",
+    "title": "دعاء من خاف ظلم السلطان",
+    "filename": "hisn_38.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_39",
+    "title": "الدعاء على العدو",
+    "filename": "hisn_39.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_40",
+    "title": "ما يقول من خاف قوماً",
+    "filename": "hisn_40.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_41",
+    "title": "دعاء من أصابه شك في الإيمان",
+    "filename": "hisn_41.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_42",
+    "title": "الدعاء قضاء الدين",
+    "filename": "hisn_42.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_43",
+    "title": "دعاء الوسوسة في الصلاة والقراءة",
+    "filename": "hisn_43.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_44",
+    "title": "دعاء من استصعب عليه أمر",
+    "filename": "hisn_44.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_45",
+    "title": "ما يقول ويفعل من أذنب ذنباً",
+    "filename": "hisn_45.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_46",
+    "title": "دعاء طرد الشيطان ووساوسه",
+    "filename": "hisn_46.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_47",
+    "title": "الدعاء حينما يقع مالا يرضاه أو غلب على أمره",
+    "filename": "hisn_47.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_48",
+    "title": "تهنئة المولود له وجوابه",
+    "filename": "hisn_48.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_49",
+    "title": "ما يعوذ به الأولاد",
+    "filename": "hisn_49.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_50",
+    "title": "الدعاء للمريض في عيادته",
+    "filename": "hisn_50.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_51",
+    "title": "فضل عيادة المريض",
+    "filename": "hisn_51.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_52",
+    "title": "دعاء المريض الذي يئس من حياته",
+    "filename": "hisn_52.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_53",
+    "title": "تلقين المحتضر",
+    "filename": "hisn_53.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_54",
+    "title": "دعاء من أصيب بمصيبة",
+    "filename": "hisn_54.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_55",
+    "title": "الدعاء عند إغماض الميت",
+    "filename": "hisn_55.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_56",
+    "title": "الدعاء للميت في الصلاة عليه",
+    "filename": "hisn_56.json",
+    "count": 7
+  },
+  {
+    "id": "hisn_57",
+    "title": "الدعاء للفرط في الصلاة عليه",
+    "filename": "hisn_57.json",
+    "count": 5
+  },
+  {
+    "id": "hisn_58",
+    "title": "دعاء التعزية",
+    "filename": "hisn_58.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_59",
+    "title": "الدعاء عند إدخال الميت القبر",
+    "filename": "hisn_59.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_60",
+    "title": "الدعاء بعد دفن الميت",
+    "filename": "hisn_60.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_61",
+    "title": "دعاء زيارة القبور",
+    "filename": "hisn_61.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_62",
+    "title": "دعاء الريح",
+    "filename": "hisn_62.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_63",
+    "title": "دعاء الرعد",
+    "filename": "hisn_63.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_64",
+    "title": "من أدعية الاستسقاء",
+    "filename": "hisn_64.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_65",
+    "title": "الدعاء إذا نزل المطر",
+    "filename": "hisn_65.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_66",
+    "title": "الذكر بعد نزول المطر",
+    "filename": "hisn_66.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_67",
+    "title": "من أدعية الاستصحاء",
+    "filename": "hisn_67.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_68",
+    "title": "دعاء رؤية الهلال",
+    "filename": "hisn_68.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_69",
+    "title": "الدعاء عند إفطار الصائم",
+    "filename": "hisn_69.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_70",
+    "title": "الدعاء قبل الطعام",
+    "filename": "hisn_70.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_71",
+    "title": "الدعاء عند الفراغ من الطعام",
+    "filename": "hisn_71.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_72",
+    "title": "دعاء الضيف لصاحب الطعام",
+    "filename": "hisn_72.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_73",
+    "title": "الدعاء لمن سقاه أو إذا أراد ذلك",
+    "filename": "hisn_73.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_74",
+    "title": "الدعاء إذا أفطر عند أهل بيت",
+    "filename": "hisn_74.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_75",
+    "title": "دعاء الصائم إذا حضر الطعام ولم يفطر",
+    "filename": "hisn_75.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_76",
+    "title": "ما يقول الصائم إذا سابه أحد",
+    "filename": "hisn_76.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_77",
+    "title": "الدعاء عند رؤية باكورة الثمر",
+    "filename": "hisn_77.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_78",
+    "title": "دعاء العطاس",
+    "filename": "hisn_78.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_79",
+    "title": "ما يقالُ للكافر إذا عطس فحمد الله",
+    "filename": "hisn_79.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_80",
+    "title": "الدعاء للمتزوج",
+    "filename": "hisn_80.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_81",
+    "title": "دعاء المتزوج لنفسه ودعاء شراء الدابة",
+    "filename": "hisn_81.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_82",
+    "title": "الدعاء قبل إتيان الزوجة",
+    "filename": "hisn_82.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_83",
+    "title": "دعاء الغضب",
+    "filename": "hisn_83.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_84",
+    "title": "دعاء من رأى مبتلى",
+    "filename": "hisn_84.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_85",
+    "title": "ما يقال في المجلس",
+    "filename": "hisn_85.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_86",
+    "title": "كفارة المجلس ومايختم به المجالس",
+    "filename": "hisn_86.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_87",
+    "title": "الدعاء لمن قال غفر الله لك",
+    "filename": "hisn_87.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_88",
+    "title": "الدعاء لمن صنع إليك معروفاً",
+    "filename": "hisn_88.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_89",
+    "title": "ما يعصم به من الدجال",
+    "filename": "hisn_89.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_90",
+    "title": "الدعاء لمن قال إني أحبك في الله",
+    "filename": "hisn_90.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_91",
+    "title": "الدعاء لمن عرض عليك ماله",
+    "filename": "hisn_91.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_92",
+    "title": "الدعاء لمن أقرض عند القضاء",
+    "filename": "hisn_92.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_93",
+    "title": "دعاء الخوف من الشرك",
+    "filename": "hisn_93.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_94",
+    "title": "الدعاء لمن قال بارك الله فيك",
+    "filename": "hisn_94.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_95",
+    "title": "دعاء كراهية الطيرة",
+    "filename": "hisn_95.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_96",
+    "title": "دعاء ركوب الدابة",
+    "filename": "hisn_96.json",
+    "count": 5
+  },
+  {
+    "id": "hisn_97",
+    "title": "دعاء السفر",
+    "filename": "hisn_97.json",
+    "count": 6
+  },
+  {
+    "id": "hisn_98",
+    "title": "دعاء دخول القرية أو البلدة",
+    "filename": "hisn_98.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_99",
+    "title": "دعاء دخول السوق",
+    "filename": "hisn_99.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_100",
+    "title": "الدعاء إذا تعس المركوب",
+    "filename": "hisn_100.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_101",
+    "title": "دعاء المسافر للمقيم",
+    "filename": "hisn_101.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_102",
+    "title": "دعاء المقيم للمسافر",
+    "filename": "hisn_102.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_103",
+    "title": "التكبير والتسبيح في سير السفر",
+    "filename": "hisn_103.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_104",
+    "title": "دعاء المسافر إذا أسحر",
+    "filename": "hisn_104.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_105",
+    "title": "الدعاء إذا نزل منزلا في سفر أو غيره",
+    "filename": "hisn_105.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_106",
+    "title": "ذكر الرجوع من السفر",
+    "filename": "hisn_106.json",
+    "count": 4
+  },
+  {
+    "id": "hisn_107",
+    "title": "ما يقول ويفعل من أتاه أمر يسره أو يكرهه",
+    "filename": "hisn_107.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_108",
+    "title": "فضل الصلاة على النبي صلى الله عليه وسلم",
+    "filename": "hisn_108.json",
+    "count": 5
+  },
+  {
+    "id": "hisn_109",
+    "title": "إفشاء السلام",
+    "filename": "hisn_109.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_110",
+    "title": "كيف يرد السلام على الكافر إذا سلم",
+    "filename": "hisn_110.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_111",
+    "title": "دعاء صياح الديك ونهيق الحمار",
+    "filename": "hisn_111.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_112",
+    "title": "دعاء نباح الكلاب بالليل",
+    "filename": "hisn_112.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_113",
+    "title": "الدعاء لمن سببته",
+    "filename": "hisn_113.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_114",
+    "title": "ما يقول المسلم إذا مدح المسلم",
+    "filename": "hisn_114.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_115",
+    "title": "ما يقول المسلم إذا زكي",
+    "filename": "hisn_115.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_116",
+    "title": "كيف يلبي المحرم في الحج أو العمرة",
+    "filename": "hisn_116.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_117",
+    "title": "التكبيرة إذا أتي الركن الأسود",
+    "filename": "hisn_117.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_118",
+    "title": "الدعاء بين الركن اليماني والحجر الأسود",
+    "filename": "hisn_118.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_119",
+    "title": "دعاء الوقوف على الصفا والمروة",
+    "filename": "hisn_119.json",
+    "count": 5
+  },
+  {
+    "id": "hisn_120",
+    "title": "الدعاء يوم عرفة",
+    "filename": "hisn_120.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_121",
+    "title": "الذكر عند المشعر الحرام",
+    "filename": "hisn_121.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_122",
+    "title": "التكبيرة عند رمي الجمار مع كل حصاة",
+    "filename": "hisn_122.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_123",
+    "title": "ما يقول عند التعجب والأمر السار",
+    "filename": "hisn_123.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_124",
+    "title": "ما يفعل من أتاه أمر يسره",
+    "filename": "hisn_124.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_125",
+    "title": "ما يقول من أحس وجعاً في جسده",
+    "filename": "hisn_125.json",
+    "count": 2
+  },
+  {
+    "id": "hisn_126",
+    "title": "دعاء من خشي أن يصيب شيئاً بعينه",
+    "filename": "hisn_126.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_127",
+    "title": "ما يقال عند الفزع",
+    "filename": "hisn_127.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_128",
+    "title": "ما يقول عند الذبح أو النحر",
+    "filename": "hisn_128.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_129",
+    "title": "ما يقول لرد كيد مردة الشياطين",
+    "filename": "hisn_129.json",
+    "count": 3
+  },
+  {
+    "id": "hisn_130",
+    "title": "الاستغفار والتوبة",
+    "filename": "hisn_130.json",
+    "count": 6
+  },
+  {
+    "id": "hisn_131",
+    "title": "فضل التسبيح والتحميد ، والتهليل ، والتكبير",
+    "filename": "hisn_131.json",
+    "count": 11
+  },
+  {
+    "id": "hisn_132",
+    "title": "كيف كان النبي صلى الله عليه وسلم يسبح ؟",
+    "filename": "hisn_132.json",
+    "count": 1
+  },
+  {
+    "id": "hisn_133",
+    "title": "من أنواع الخير والآداب الجامعة",
+    "filename": "hisn_133.json",
+    "count": 3
+  }
+]

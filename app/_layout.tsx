@@ -1,21 +1,26 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Octicons from "@expo/vector-icons/Octicons";
+import { useFonts } from "expo-font";
 import * as NavigationBar from "expo-navigation-bar";
 import { Tabs } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { AppState, Platform, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CustomTabBar, { TabConfigItem } from "../components/CustomTabBar";
 
+SplashScreen.preventAutoHideAsync();
+
 const tabConfig: TabConfigItem[] = [
   {
-    name: "azkar",
-    title: "الأذكار",
+    name: "share",
+    title: "المشاركة",
     icon: (color, focused) => (
-      <Octicons name="book" size={focused ? 28 : 24} color={color} />
+      <AntDesign name="sharealt" size={focused ? 28 : 24} color={color} />
     ),
     visible: true,
   },
@@ -44,13 +49,14 @@ const tabConfig: TabConfigItem[] = [
     visible: true,
   },
   {
-    name: "share",
-    title: "المشاركة",
+    name: "azkar",
+    title: "الأذكار",
     icon: (color, focused) => (
-      <AntDesign name="sharealt" size={focused ? 28 : 24} color={color} />
+      <Octicons name="book" size={focused ? 28 : 24} color={color} />
     ),
     visible: true,
-  },
+  }
+  
 ];
 
 const hideNavigationBar = async () => {
@@ -66,6 +72,24 @@ const hideNavigationBar = async () => {
 
 export default function RootLayout() {
   const insets = useSafeAreaInsets();
+  
+  const [loaded, error] = useFonts({
+     ...AntDesign.font,
+     ...Entypo.font,
+     ...MaterialCommunityIcons.font,
+     ...Octicons.font,
+     ...Ionicons.font,
+  });
+
+  useEffect(() => {
+    if (error) throw error;
+  }, [error]);
+
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded]);
 
   useEffect(() => {
     hideNavigationBar();
@@ -80,6 +104,10 @@ export default function RootLayout() {
       subscription.remove();
     };
   }, []);
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <>

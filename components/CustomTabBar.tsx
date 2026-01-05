@@ -1,11 +1,12 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import React from "react";
 import {
-  Animated,
-  Dimensions,
-  StyleSheet,
-  TouchableOpacity,
-  View,
+    Animated,
+    Dimensions,
+    Platform,
+    StyleSheet,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -141,8 +142,12 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({ state, descriptors, navigat
                       transform: [{ translateY }, { scale }],
                       backgroundColor,
                       borderWidth,
-                      shadowOpacity,
-                      borderColor: "#FFFFFF", // Start with white border
+                      ...Platform.select({
+                        ios: { shadowOpacity },
+                        android: { elevation: 4 },
+                        web: { boxShadow: `0 4px 6px rgba(0, 128, 0, 0.2)` }
+                      }),
+                      borderColor: "#FFFFFF", 
                     },
                   ]}
                 >
@@ -194,7 +199,15 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 8,
     position: "relative",
-    elevation: 10,
+    ...Platform.select({
+      web: { boxShadow: "0 10px 15px rgba(0,0,0,0.1)" },
+      ios: {
+        shadowColor: "#000",
+        shadowOpacity: 0.1,
+        shadowRadius: 15,
+      },
+      android: { elevation: 10 }
+    }),
     borderWidth: 1,
     borderColor: "rgba(0, 0, 0, 0.05)",
     width: width - 40,

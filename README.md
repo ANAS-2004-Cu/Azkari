@@ -1,50 +1,55 @@
-# Welcome to your Expo app 👋
+# 🌙 تطبيق أذكاري (Azkari App)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+### تطبيق أذكار عصري مبني بتقنيات React Native & Expo
 
-## Get started
+تطبيق **أذكاري** هو تجربة روحية متكاملة مصممة بأحدث معايير واجهات المستخدم (Glassmorphism) ليوفر لك بيئة مريحة وهادئة للأذكار اليومية وحصن المسلم.
 
-1. Install dependencies
+---
+
+## ✨ المميزات الرئيسية (Key Features)
+
+- **أذكار حصن المسلم**: تقسيم شامل ومنظم لجميع أذكار المسلم اليومية.
+- **وضع التركيز (Focus Mode)**: تجربة غامرة تساعدك على التسبيح والعد بسهولة مع دعم أزرار الصوت.
+- **بحث عميق وذكي**: محرك بحث متقدم يفهم النصوص العربية ويتجاهل التشكيل.
+- **تصميم فخم (Premium UI)**: واجهات زجاجية، أيقونات ثلاثية الأبعاد، وتأثيرات بصرية جذابة.
+- **متعدد المنصات**: يعمل بشكل كامل على Android، iOS، والويب (مع دعم كامل للظلال الحديثة).
+
+---
+
+## 🚀 التوثيق الشامل (Project Documentation)
+
+للحصول على تفاصيل تقنية أعمق حول بنية المشروع، التعديلات الأخيرة، وكيفية الوصول لهذه النتيجة الاحترافية، يرجى مراجعة التقارير التالية:
+
+1.  **[تقرير التطوير الشامل (DEVELOPMENT_REPORT.md)](./DEVELOPMENT_REPORT.md)** - _العنصر الأهم_: تفاصيل معمارية المشروع، التقنيات المستخدمة، وحلول التوافق مع الويب.
+2.  **[ملخص العمل (WORK_SUMMARY.md)](./WORK_SUMMARY.md)** - قائمة المهام التي تم إنجازها بالتفصيل.
+3.  **[تقرير التحسينات (IMPROVEMENTS_REPORT.md)](./IMPROVEMENTS_REPORT.md)** - تفاصيل تحسين الأداء وحل المشاكل التقنية.
+
+---
+
+## 🛠 البدء (Getting Started)
+
+1. **تثبيت التبعيات**:
 
    ```bash
    npm install
    ```
 
-2. Start the app
-
+2. **تشغيل التطبيق**:
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🏗 هيكل المشروع (App Structure)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- `app/`: يحتوي على جميع الصفحات والمسارات (Routes).
+- `app/azkar/_components/`: المكونات البرمجية المعاد استخدامها.
+- `app/azkar/_hooks/`: القواعد المنطقية (Custom Hooks).
+- `app/azkar/_utils/`: الدوال المساعدة ونظام البحث.
+- `Data/`: بيانات الأذكار (JSON).
 
-## Get a fresh project
+---
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**تم تطوير هذا المشروع بشغف لتقديم أفضل تجربة للمستخدم المسلم.** 🤲
+**بواسطة Antigravity AI**

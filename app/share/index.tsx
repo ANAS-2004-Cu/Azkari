@@ -4,6 +4,7 @@ import {
   Alert,
   Image,
   Linking,
+  Platform,
   ScrollView,
   Share,
   StyleSheet,
@@ -58,7 +59,7 @@ export default function Index() {
     },
   ];
 
-  const openLink = async (url, name) => {
+  const openLink = async (url: string, name: string) => {
     if (url === "#") {
       Alert.alert("Coming Soon", `${name} link will be available soon`);
       return;
@@ -68,6 +69,7 @@ export default function Index() {
         message: url,
       });
     } catch (error) {
+      console.error(error);
       Alert.alert("Error", `Cannot open ${name}`);
     }
   };
@@ -78,6 +80,7 @@ export default function Index() {
     try {
       await Linking.openURL(whatsappUrl);
     } catch (error) {
+      console.error(error);
       Alert.alert("Error", "Cannot open WhatsApp");
     }
   };
@@ -184,9 +187,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 8,
     fontWeight: "bold",
-    textShadowColor: "rgba(0,0,0,0.3)",
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 3,
+    ...Platform.select({
+      web: {
+        textShadow: "1px 1px 3px rgba(0,0,0,0.3)",
+      },
+      ios: {
+        textShadowColor: "rgba(0,0,0,0.3)",
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 3,
+      },
+      android: {
+        textShadowColor: "rgba(0,0,0,0.3)",
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 3,
+      },
+    }),
   },
   subtitle: {
     fontSize: 16,
@@ -217,11 +232,20 @@ const styles = StyleSheet.create({
     padding: 20,
     width: "48%",
     alignItems: "center",
-    elevation: 4,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
+    ...Platform.select({
+      web: {
+        boxShadow: "0 2px 4px rgba(0,0,0,0.15)",
+      },
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   iconContainer: {
     marginBottom: 12,
@@ -247,11 +271,20 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 25,
     alignItems: "center",
-    elevation: 6,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
+    ...Platform.select({
+      web: {
+        boxShadow: "0 3px 5px rgba(0,0,0,0.2)",
+      },
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+      },
+      android: {
+        elevation: 6,
+      },
+    }),
   },
   suggestionDescription: {
     textAlign: "center",
@@ -268,11 +301,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    elevation: 3,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
+    ...Platform.select({
+      web: {
+        boxShadow: "0 2px 3px rgba(0,0,0,0.2)",
+      },
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 3,
+      },
+    }),
   },
   whatsappText: {
     marginLeft: 10,

@@ -1,20 +1,32 @@
 import { AntDesign, Feather, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
-import { Modal, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import asmaData from '../../Data/asma.json';
 import sabahData from '../../Data/azkar_sabah.json';
 import gratitudeData from '../../Data/gratitude.json';
 import versesData from '../../Data/verses.json';
 
-export default function App() {
+interface AsmaItem {
+  id: number;
+  name: string;
+  meaning: string;
+}
 
+interface AzkarItem {
+  id: number;
+  zekr: string;
+  count: string | number;
+}
+
+export default function App() {
   const [index, setIndex] = useState(0);
-    const [verseIndex, setVerseIndex] = useState(0);
-     const [gratitudeIndex, setGratitudeIndex] = useState(0);
-       const [showMorningPage, setShowMorningPage] = useState(false);
-  const [completed, setCompleted] = useState([]);
-  const toggleComplete = (id) => {
+  const [verseIndex, setVerseIndex] = useState(0);
+  const [gratitudeIndex, setGratitudeIndex] = useState(0);
+  const [showMorningPage, setShowMorningPage] = useState(false);
+  const [completed, setCompleted] = useState<number[]>([]);
+
+  const toggleComplete = (id: number) => {
     if (completed.includes(id)) {
       setCompleted(completed.filter((c) => c !== id));
     } else {
@@ -127,7 +139,7 @@ export default function App() {
                   </View>
 
                   <ScrollView style={{ padding: 20 }}>
-                    {sabahData.map((item) => {
+                    {(sabahData as AzkarItem[]).map((item) => {
                       const isDone = completed.includes(item.id);
                       return (
                         <TouchableOpacity
@@ -139,11 +151,20 @@ export default function App() {
                             padding: 15,
                             borderRadius: 12,
                             backgroundColor: isDone ? "#d4edda" : "#f5f5f5",
-                            shadowColor: "#000",
-                            shadowOffset: { width: 0, height: 2 },
-                            shadowOpacity: 0.1,
-                            shadowRadius: 4,
-                            elevation: 3,
+                            ...Platform.select({
+                                web: {
+                                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                                },
+                                 ios: {
+                                     shadowColor: "#000",
+                                     shadowOffset: { width: 0, height: 2 },
+                                     shadowOpacity: 0.1,
+                                     shadowRadius: 4,
+                                 },
+                                 android: {
+                                     elevation: 3,
+                                 },
+                            }),
                           }}
                         >
                           <Text
@@ -200,8 +221,8 @@ export default function App() {
           </View>
 
 
-          <Text style={styles.asmaWord}>{asmaData[index]?.name}</Text>
-          <Text style={styles.asmaMeaning}>{asmaData[index]?.meaning}</Text>
+          <Text style={styles.asmaWord}>{(asmaData as AsmaItem[])[index]?.name}</Text>
+          <Text style={styles.asmaMeaning}>{(asmaData as AsmaItem[])[index]?.meaning}</Text>
 
           <View style={styles.cardFooterRow}>
             <CircleBtn onPress={handlePrev} left />
@@ -212,7 +233,7 @@ export default function App() {
 
         <LinearGradient colors={["#3CB9FF", "#1FA2FF"]} style={[styles.fullCard, { height: 170 }]}>
           <Text style={styles.gratitudeTop}>أشكرُه يا ربي على نعمة</Text>
-          <Text style={styles.gratitudeWord}>{gratitudeData[gratitudeIndex]}</Text>
+          <Text style={styles.gratitudeWord}>{(gratitudeData as string[])[gratitudeIndex]}</Text>
 
           <View style={styles.cardFooterRow}>
             <CircleBtn onPress={handleGratitudePrev} left />
@@ -234,7 +255,7 @@ export default function App() {
             </View>
           </View>
 
-          <Text style={styles.verseBody}>{versesData[verseIndex]}</Text>
+          <Text style={styles.verseBody}>{(versesData as string[])[verseIndex]}</Text>
 
           <View style={styles.cardFooterRow}>
             <CircleBtn onPress={handleVersePrev} left />
@@ -252,13 +273,25 @@ export default function App() {
 }
 
 
-const Tab = ({ label, active }) => (
+interface TabProps {
+  label: string;
+  active?: boolean;
+}
+
+const Tab: React.FC<TabProps> = ({ label, active }) => (
   <View style={[styles.tab, active && styles.tabActive]}>
     <Text style={[styles.tabText, active && styles.tabTextActive]}>{label}</Text>
   </View>
 );
 
-const PillButton = ({ label, color, icon, onPress }) => (
+interface PillButtonProps {
+  label: string;
+  color: string;
+  icon: React.ReactNode;
+  onPress?: () => void;
+}
+
+const PillButton: React.FC<PillButtonProps> = ({ label, color, icon, onPress }) => (
   <TouchableOpacity
     style={[styles.pill, { backgroundColor: color }]}
     onPress={onPress}
@@ -270,12 +303,21 @@ const PillButton = ({ label, color, icon, onPress }) => (
   </TouchableOpacity>
 );
 
+interface CardProps {
+  children: React.ReactNode;
+  style?: any;
+}
 
-const Card = ({ children, style }) => (
+const Card: React.FC<CardProps> = ({ children, style }) => (
   <View style={[styles.card, style]}>{children}</View>
 );
 
-const CircleBtn = ({ left, onPress }) => (
+interface CircleBtnProps {
+  left?: boolean;
+  onPress: () => void;
+}
+
+const CircleBtn: React.FC<CircleBtnProps> = ({ left, onPress }) => (
   <TouchableOpacity style={styles.circleBtn} onPress={onPress}>
     <AntDesign name={left ? 'left' : 'right'} size={16} color="#4f4f4f" />
   </TouchableOpacity>
@@ -383,10 +425,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff', 
     borderRadius: 16, 
     padding: 12, 
-    shadowColor: '#000', 
-    shadowOpacity: 0.08, 
-    shadowRadius: 8, 
-    elevation: 3 
+    ...Platform.select({
+        web: {
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.08)',
+        },
+        ios: {
+            shadowColor: '#000', 
+            shadowOpacity: 0.08, 
+            shadowRadius: 8, 
+        },
+        android: {
+            elevation: 3 
+        }
+    })
   },
 
   helloIcon: { 
@@ -420,10 +471,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff', 
     alignItems: 'center', 
     justifyContent: 'center', 
-    shadowColor: '#000', 
-    shadowOpacity: 0.08, 
-    shadowRadius: 6, 
-    elevation: 2 
+    ...Platform.select({
+        web: {
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.08)',
+        },
+        ios: {
+            shadowColor: '#000', 
+            shadowOpacity: 0.08, 
+            shadowRadius: 6, 
+        },
+        android: {
+            elevation: 2 
+        }
+    })
   },
 
   noticeBox: { 
@@ -434,10 +494,19 @@ const styles = StyleSheet.create({
     borderRadius: 14, 
     padding: 12, 
     marginTop: 10, 
-    shadowColor: '#000', 
-    shadowOpacity: 0.08, 
-    shadowRadius: 8, 
-    elevation: 2 
+    ...Platform.select({
+        web: {
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.08)',
+        },
+        ios: {
+            shadowColor: '#000', 
+            shadowOpacity: 0.08, 
+            shadowRadius: 8, 
+        },
+        android: {
+            elevation: 2 
+        }
+    })
   },
 
   noticeText: { 
@@ -493,10 +562,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff', 
     borderRadius: 18, 
     padding: 14, 
-    shadowColor: '#000', 
-    shadowOpacity: 0.08, 
-    shadowRadius: 10, 
-    elevation: 3 
+    ...Platform.select({
+        web: {
+            boxShadow: '0 5px 10px rgba(0, 0, 0, 0.08)',
+        },
+        ios: {
+            shadowColor: '#000', 
+            shadowOpacity: 0.08, 
+            shadowRadius: 10, 
+        },
+        android: {
+            elevation: 3 
+        }
+    })
   },
 
   widgetHeaderRow: { 
@@ -567,10 +645,19 @@ const styles = StyleSheet.create({
     marginHorizontal: 16, 
     backgroundColor: '#fff', 
     borderRadius: 18, 
-    shadowColor: '#000', 
-    shadowOpacity: 0.08, 
-    shadowRadius: 10, 
-    elevation: 3 
+    ...Platform.select({
+        web: {
+            boxShadow: '0 5px 10px rgba(0, 0, 0, 0.08)',
+        },
+        ios: {
+            shadowColor: '#000', 
+            shadowOpacity: 0.08, 
+            shadowRadius: 10, 
+        },
+        android: {
+            elevation: 3 
+        }
+    })
   },
 
   cardHeaderRow: { 
@@ -617,10 +704,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     borderWidth: 1, 
     borderColor: '#eee', 
-    shadowColor: '#000', 
-    shadowOpacity: 0.06, 
-    shadowRadius: 6, 
-    elevation: 2 
+    ...Platform.select({
+        web: {
+            boxShadow: '0 3px 6px rgba(0, 0, 0, 0.06)',
+        },
+        ios: {
+            shadowColor: '#000', 
+            shadowOpacity: 0.06, 
+            shadowRadius: 6, 
+        },
+        android: {
+            elevation: 2 
+        }
+    })
   },
 
   fullCard: { 
@@ -630,10 +726,19 @@ const styles = StyleSheet.create({
     padding: 16, 
     position: 'relative', 
     overflow: 'hidden', 
-    shadowColor: '#000', 
-    shadowOpacity: 0.08, 
-    shadowRadius: 10, 
-    elevation: 3 
+    ...Platform.select({
+      web: {
+        boxShadow: '0 5px 10px rgba(0, 0, 0, 0.08)',
+      },
+      ios: {
+        shadowColor: '#000', 
+        shadowOpacity: 0.08, 
+        shadowRadius: 10, 
+      },
+      android: {
+        elevation: 3 
+      }
+    })
   },
 
   gratitudeTop: { 
@@ -693,10 +798,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse', 
     alignItems: 'center', 
     justifyContent: 'space-around', 
-    shadowColor: '#000', 
-    shadowOpacity: 0.1, 
-    shadowRadius: 12, 
-    elevation: 8 
+    ...Platform.select({
+        web: {
+            boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
+        },
+        ios: {
+            shadowColor: '#000', 
+            shadowOpacity: 0.1, 
+            shadowRadius: 12, 
+        },
+        android: {
+            elevation: 8 
+        }
+    })
   },
 
   navItem: { 
