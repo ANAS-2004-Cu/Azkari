@@ -2,16 +2,22 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowJs": true,
     "paths": {
       "@/*": [
         "./*"
-      ]
+      ],
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/(home)/index.jsx", "app/azkar/_layout.jsx"  ]
+  ]
 }

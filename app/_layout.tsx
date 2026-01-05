@@ -1,5 +1,6 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Octicons from "@expo/vector-icons/Octicons";
 import * as NavigationBar from "expo-navigation-bar";
 import { Tabs } from "expo-router";
@@ -7,10 +8,9 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { AppState, Platform, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import CustomTabBar from "../components/CustomTabBar";
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import CustomTabBar, { TabConfigItem } from "../components/CustomTabBar";
 
-const tabConfig = [
+const tabConfig: TabConfigItem[] = [
   {
     name: "azkar",
     title: "الأذكار",
@@ -76,11 +76,8 @@ export default function RootLayout() {
       }
     });
 
-    const interval = setInterval(hideNavigationBar, 2000);
-
     return () => {
       subscription.remove();
-      clearInterval(interval);
     };
   }, []);
 
@@ -97,7 +94,7 @@ export default function RootLayout() {
           zIndex: 1,
         }}
       />
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <Tabs
         tabBar={(props) => <CustomTabBar {...props} tabConfig={tabConfig} />}
         screenOptions={{

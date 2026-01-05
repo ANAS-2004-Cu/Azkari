@@ -1,3 +1,4 @@
+import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import React from "react";
 import {
   Animated,
@@ -10,7 +11,18 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const { width } = Dimensions.get("window");
 
-const CustomTabBar = ({ state, descriptors, navigation, tabConfig }) => {
+export interface TabConfigItem {
+  name: string;
+  title: string;
+  icon: (color: string, focused: boolean) => React.ReactNode;
+  visible: boolean;
+}
+
+interface CustomTabBarProps extends BottomTabBarProps {
+  tabConfig: TabConfigItem[];
+}
+
+const CustomTabBar: React.FC<CustomTabBarProps> = ({ state, descriptors, navigation, tabConfig }) => {
   const insets = useSafeAreaInsets();
 
   const filteredRoutes = state.routes.filter((route) => {
@@ -43,7 +55,7 @@ const CustomTabBar = ({ state, descriptors, navigation, tabConfig }) => {
       tension: 80,
       friction: 8,
     }).start();
-  }, [state.index]);
+  }, [state.index, filteredRoutes, animatedValues, state.routes, tabBarAnimation]);
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom + 10 }]}>
@@ -130,6 +142,7 @@ const CustomTabBar = ({ state, descriptors, navigation, tabConfig }) => {
                       backgroundColor,
                       borderWidth,
                       shadowOpacity,
+                      borderColor: "#FFFFFF", // Start with white border
                     },
                   ]}
                 >

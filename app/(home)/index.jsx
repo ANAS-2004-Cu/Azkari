@@ -1,9 +1,9 @@
-import React, {useState } from 'react';
-import { SafeAreaView, StatusBar, View, Text, ScrollView, TouchableOpacity, StyleSheet, Modal } from 'react-native';
+import { AntDesign, Feather, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons, Feather, MaterialIcons, AntDesign } from '@expo/vector-icons';
-import Data from '../../Data/morning.json';
+import { useState } from 'react';
+import { Modal, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import asmaData from '../../Data/asma.json';
+import sabahData from '../../Data/azkar_sabah.json';
 import gratitudeData from '../../Data/gratitude.json';
 import versesData from '../../Data/verses.json';
 
@@ -127,7 +127,7 @@ export default function App() {
                   </View>
 
                   <ScrollView style={{ padding: 20 }}>
-                    {Data.map((item) => {
+                    {sabahData.map((item) => {
                       const isDone = completed.includes(item.id);
                       return (
                         <TouchableOpacity
@@ -151,6 +151,8 @@ export default function App() {
                               fontSize: 16,
                               textDecorationLine: isDone ? "line-through" : "none",
                               color: isDone ? "#155724" : "#000",
+                              textAlign: 'right',
+                              lineHeight: 26,
                             }}
                           >
                             {item.zekr}
@@ -159,9 +161,10 @@ export default function App() {
                             style={{
                               color: isDone ? "#155724" : "#888",
                               marginTop: 5,
+                              textAlign: 'right',
                             }}
                           >
-                            🔄 التكرار: {item.repeat} مرات
+                            🔄 التكرار: {item.count} مرات
                           </Text>
                           {isDone && (
                             <Text style={{ marginTop: 5, color: "#155724", fontWeight: "bold" }}>
@@ -197,7 +200,8 @@ export default function App() {
           </View>
 
 
-          <Text style={styles.asmaWord}>{asmaData[index]}</Text>
+          <Text style={styles.asmaWord}>{asmaData[index]?.name}</Text>
+          <Text style={styles.asmaMeaning}>{asmaData[index]?.meaning}</Text>
 
           <View style={styles.cardFooterRow}>
             <CircleBtn onPress={handlePrev} left />
@@ -587,7 +591,14 @@ const styles = StyleSheet.create({
     fontSize: 40, 
     color: '#5D84FF', 
     fontWeight: '900', 
-    marginVertical: 10 
+    marginVertical: 5 
+  },
+
+  asmaMeaning: {
+    textAlign: 'center',
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 10,
   },
 
   cardFooterRow: { 
